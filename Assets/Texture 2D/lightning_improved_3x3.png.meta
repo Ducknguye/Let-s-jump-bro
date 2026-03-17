@@ -1,0 +1,741 @@
+fileFormatVersion: 2
+guid: 5863f8c250166c747ad95284acb54fa3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4572984959908771380
+    second: lightning_improved_3x3_0
+  - first:
+      213: 1082283585200464780
+    second: lightning_improved_3x3_1
+  - first:
+      213: -7797008908754723752
+    second: lightning_improved_3x3_2
+  - first:
+      213: -6095228112369078221
+    second: lightning_improved_3x3_3
+  - first:
+      213: -5147784988403159254
+    second: lightning_improved_3x3_4
+  - first:
+      213: 2949929121580869138
+    second: lightning_improved_3x3_5
+  - first:
+      213: -7996024482501496670
+    second: lightning_improved_3x3_6
+  - first:
+      213: 3339548806037636771
+    second: lightning_improved_3x3_7
+  - first:
+      213: -6580929095942210366
+    second: lightning_improved_3x3_8
+  - first:
+      213: 4323007330965109222
+    second: lightning_improved_3x3_9
+  - first:
+      213: -4709690976325156590
+    second: lightning_improved_3x3_10
+  - first:
+      213: 506661696391867810
+    second: lightning_improved_3x3_11
+  - first:
+      213: -6000680736775592562
+    second: lightning_improved_3x3_12
+  - first:
+      213: -7739843628375220464
+    second: lightning_improved_3x3_13
+  - first:
+      213: -1084017314479286680
+    second: lightning_improved_3x3_14
+  - first:
+      213: 5168600958029309438
+    second: lightning_improved_3x3_15
+  - first:
+      213: -2658529177648971805
+    second: lightning_improved_3x3_16
+  - first:
+      213: 8025359667014684097
+    second: lightning_improved_3x3_17
+  - first:
+      213: -6442185188588126129
+    second: lightning_improved_3x3_18
+  - first:
+      213: -801766546826994277
+    second: lightning_improved_3x3_19
+  - first:
+      213: 1080944552744995132
+    second: lightning_improved_3x3_20
+  - first:
+      213: -265409642986465542
+    second: lightning_improved_3x3_21
+  - first:
+      213: 2012439694548126215
+    second: lightning_improved_3x3_22
+  - first:
+      213: -6851075944925902095
+    second: lightning_improved_3x3_23
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: lightning_improved_3x3_0
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 775
+        width: 510
+        height: 246
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc90f6d586e7980c0800000000000000
+      internalID: -4572984959908771380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightning_improved_3x3_1
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 795
+        width: 510
+        height: 198
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c832c12cf2b050f00800000000000000
+      internalID: 1082283585200464780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightning_improved_3x3_2
+      rect:
+        serializedVersion: 2
+        x: 1407
+        y: 787
+        width: 562
+        height: 198
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85c5e1335b57bc390800000000000000
+      internalID: -7797008908754723752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightning_improved_3x3_3
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 431
+        width: 586
+        height: 214
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33034416356696ba0800000000000000
+      internalID: -6095228112369078221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightning_improved_3x3_4
+      rect:
+        serializedVersion: 2
+        x: 791
+        y: 407
+        width: 538
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2f2422c3d46f88b0800000000000000
+      internalID: -5147784988403159254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightning_improved_3x3_5
+      rect:
+        serializedVersion: 2
+        x: 1459
+        y: 387
+        width: 406
+        height: 226
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 216686c18e040f820800000000000000
+      internalID: 2949929121580869138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightning_improved_3x3_6
+      rect:
+        serializedVersion: 2
+        x: 1879
+        y: 511
+        width: 142
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a0fb21191a680190800000000000000
+      internalID: -7996024482501496670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightning_improved_3x3_7
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 143
+        width: 230
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a604f502f5785e20800000000000000
+      internalID: 3339548806037636771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightning_improved_3x3_8
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 183
+        width: 110
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ccf450cad7dba4a0800000000000000
+      internalID: -6580929095942210366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightning_improved_3x3_9
+      rect:
+        serializedVersion: 2
+        x: 923
+        y: 159
+        width: 230
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e9b59363486efb30800000000000000
+      internalID: 4323007330965109222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightning_improved_3x3_10
+      rect:
+        serializedVersion: 2
+        x: 1279
+        y: 195
+        width: 70
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 211c6429201d3aeb0800000000000000
+      internalID: -4709690976325156590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightning_improved_3x3_11
+      rect:
+        serializedVersion: 2
+        x: 1643
+        y: 207
+        width: 54
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2adebb2e026080700800000000000000
+      internalID: 506661696391867810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightning_improved_3x3_12
+      rect:
+        serializedVersion: 2
+        x: 1723
+        y: 223
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8526f1b9ac49bca0800000000000000
+      internalID: -6000680736775592562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightning_improved_3x3_13
+      rect:
+        serializedVersion: 2
+        x: 1783
+        y: 191
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01fdf993a3d869490800000000000000
+      internalID: -7739843628375220464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightning_improved_3x3_14
+      rect:
+        serializedVersion: 2
+        x: 1979
+        y: 199
+        width: 54
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 866d610fefbc4f0f0800000000000000
+      internalID: -1084017314479286680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightning_improved_3x3_15
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 67
+        width: 138
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef5a419df2f8ab740800000000000000
+      internalID: 5168600958029309438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightning_improved_3x3_16
+      rect:
+        serializedVersion: 2
+        x: 379
+        y: 43
+        width: 90
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3efb8356cc10b1bd0800000000000000
+      internalID: -2658529177648971805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightning_improved_3x3_17
+      rect:
+        serializedVersion: 2
+        x: 755
+        y: 119
+        width: 86
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cd4823d81ecf5f60800000000000000
+      internalID: 8025359667014684097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightning_improved_3x3_18
+      rect:
+        serializedVersion: 2
+        x: 1047
+        y: 27
+        width: 98
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f400ce004b2c896a0800000000000000
+      internalID: -6442185188588126129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightning_improved_3x3_19
+      rect:
+        serializedVersion: 2
+        x: 1435
+        y: 127
+        width: 58
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9dd597d29d8fd4f0800000000000000
+      internalID: -801766546826994277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightning_improved_3x3_20
+      rect:
+        serializedVersion: 2
+        x: 1731
+        y: 107
+        width: 54
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c394248f759400f00800000000000000
+      internalID: 1080944552744995132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightning_improved_3x3_21
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 55
+        width: 66
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af614ddf553115cf0800000000000000
+      internalID: -265409642986465542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightning_improved_3x3_22
+      rect:
+        serializedVersion: 2
+        x: 1495
+        y: 47
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70acf656d3f9deb10800000000000000
+      internalID: 2012439694548126215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightning_improved_3x3_23
+      rect:
+        serializedVersion: 2
+        x: 1779
+        y: 15
+        width: 54
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fac7750ab61ce0a0800000000000000
+      internalID: -6851075944925902095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      lightning_improved_3x3_0: -4572984959908771380
+      lightning_improved_3x3_1: 1082283585200464780
+      lightning_improved_3x3_10: -4709690976325156590
+      lightning_improved_3x3_11: 506661696391867810
+      lightning_improved_3x3_12: -6000680736775592562
+      lightning_improved_3x3_13: -7739843628375220464
+      lightning_improved_3x3_14: -1084017314479286680
+      lightning_improved_3x3_15: 5168600958029309438
+      lightning_improved_3x3_16: -2658529177648971805
+      lightning_improved_3x3_17: 8025359667014684097
+      lightning_improved_3x3_18: -6442185188588126129
+      lightning_improved_3x3_19: -801766546826994277
+      lightning_improved_3x3_2: -7797008908754723752
+      lightning_improved_3x3_20: 1080944552744995132
+      lightning_improved_3x3_21: -265409642986465542
+      lightning_improved_3x3_22: 2012439694548126215
+      lightning_improved_3x3_23: -6851075944925902095
+      lightning_improved_3x3_3: -6095228112369078221
+      lightning_improved_3x3_4: -5147784988403159254
+      lightning_improved_3x3_5: 2949929121580869138
+      lightning_improved_3x3_6: -7996024482501496670
+      lightning_improved_3x3_7: 3339548806037636771
+      lightning_improved_3x3_8: -6580929095942210366
+      lightning_improved_3x3_9: 4323007330965109222
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
