@@ -102,9 +102,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Brick"))
+        {
+            if (collision.transform.position.y > this.transform.position.y)
+            {
+                BrickController brick = collision.GetComponent<BrickController>();
+                brick?.OnHitBrick();
+            }    
+        }
+    }
+
+
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Ground"))
+        if (collision.tag == "Ground" || collision.tag == "Brick")
         {
             if (collision.transform.position.y < this.transform.position.y)
                 _onGround = true;
@@ -113,7 +126,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Ground"))
+        if (collision.tag == "Ground" || collision.tag == "Brick")
         {
             _onGround = false;
         }
