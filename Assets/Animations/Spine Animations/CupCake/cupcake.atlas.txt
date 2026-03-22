@@ -1,0 +1,34 @@
+
+cupcake.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cupcake
+  rotate: false
+  xy: 2, 52
+  size: 434, 456
+  orig: 434, 456
+  offset: 0, 0
+  index: -1
+eye1
+  rotate: false
+  xy: 2, 2
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+eye2
+  rotate: false
+  xy: 72, 31
+  size: 19, 19
+  orig: 19, 19
+  offset: 0, 0
+  index: -1
+mouth
+  rotate: true
+  xy: 52, 13
+  size: 37, 18
+  orig: 37, 18
+  offset: 0, 0
+  index: -1

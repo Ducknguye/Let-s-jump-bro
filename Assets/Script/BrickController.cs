@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public enum BrickType { Normal_Brick, Secret_Box, Lock_Box}
 
@@ -9,13 +10,26 @@ public class BrickController : MonoBehaviour
     [SerializeField] private Sprite _sprSecret;
     [SerializeField] private Sprite _sprLock;
     [SerializeField] private SpriteRenderer _mySpriteRender;
+    [SerializeField] private GameObject _objEarn;
+    [SerializeField] private ParticleSystem _fxBreak;
 
     private Animator _myAnim;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        switch(_myType)
+        this.OnUpdateSpriteBox();
+
+        _myAnim = this.GetComponent<Animator>();
+    }
+
+    private void OnValidate()
+    {
+        this.OnUpdateSpriteBox();
+    }
+    private void OnUpdateSpriteBox()
+    {
+        switch (_myType)
         {
             case BrickType.Normal_Brick:
                 _mySpriteRender.sprite = _sprNormal;
@@ -27,19 +41,37 @@ public class BrickController : MonoBehaviour
                 _mySpriteRender.sprite = _sprLock;
                 break;
         }
-
-        _myAnim = this.GetComponent<Animator>();
     }
 
-    public void OnHitBrick()
+    public void OnHitBrick(bool canBreak)
     {
         switch (_myType)
         {
             case BrickType.Normal_Brick:
-                _myAnim.SetTrigger("Hit");
+                if (!canBreak)
+                {
+                    _myAnim.SetTrigger("Hit");
+                }
+                else
+                {
+                    ParticleSystem fxBreak = Instantiate(_fxBreak, this.transform);
+                    fxBreak.transform.localPosition = Vector3.zero;
+                    _mySpriteRender.gameObject.SetActive(false);
+                    StartCoroutine(IEDeactiveBox());
+
+                    IEnumerator IEDeactiveBox()
+                    {
+                        yield return new WaitForSeconds(0.15f);
+                        this.GetComponent<BoxCollider2D>().enabled = false;
+                    }
+                }
                 break;
             case BrickType.Secret_Box:
+                _mySpriteRender.sprite = _sprLock;
+                _myType = BrickType.Lock_Box;
 
+                GameObject earnObj = Instantiate(_objEarn, this.transform);
+                earnObj.transform.localPosition = Vector3.zero;
                 break;
             case BrickType.Lock_Box:
 

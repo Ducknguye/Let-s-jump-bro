@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _myRigid2D;
     private PlayerState _myState;
     private bool _onGround;
+    private bool _canBreakBrick;
 
     private List<string> _jumpList = new List<string>() { "jump1", "jump2", "jump3" };
 
@@ -109,8 +110,13 @@ public class PlayerController : MonoBehaviour
             if (collision.transform.position.y > this.transform.position.y)
             {
                 BrickController brick = collision.GetComponent<BrickController>();
-                brick?.OnHitBrick();
+                brick?.OnHitBrick(_canBreakBrick);
             }    
+        }
+        else if (collision.CompareTag("Item"))
+        {
+            _canBreakBrick = true;
+            collision.transform.parent.gameObject.SetActive(false);
         }
     }
 
