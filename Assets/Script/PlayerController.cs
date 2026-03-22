@@ -118,6 +118,21 @@ public class PlayerController : MonoBehaviour
             _canBreakBrick = true;
             collision.transform.parent.gameObject.SetActive(false);
         }
+        else if (collision.CompareTag("Enemy"))
+        {
+            if (this.transform.position.y - collision.transform.position.y > 1.5f) // [Y(player) - Y(enemy)] /2
+            {
+                MushroomController enemy = collision.GetComponent<MushroomController>();
+                enemy?.OnDead();
+
+                _myRigid2D.linearVelocity = Vector2.zero;
+                _myRigid2D.AddForce(Vector2.up * _force * 0.75f, ForceMode2D.Impulse);
+            }
+            else
+            {
+                Debug.Log("Player is Dead");
+            }
+        }
     }
 
 

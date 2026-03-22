@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - Brick
   - Item
+  - Enemy
   layers:
   - Default
   - TransparentFX

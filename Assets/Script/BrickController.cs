@@ -14,6 +14,7 @@ public class BrickController : MonoBehaviour
     [SerializeField] private ParticleSystem _fxBreak;
 
     private Animator _myAnim;
+    private GameObject _enemyAbove;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -77,5 +78,26 @@ public class BrickController : MonoBehaviour
 
                 break;
         }
+
+        if (_enemyAbove != null)
+        {
+            MushroomController enemy = _enemyAbove.GetComponent<MushroomController>();
+            enemy?.OnDead();
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            _enemyAbove = collision.gameObject;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.CompareTag("Enemy"))
+            {
+                _enemyAbove = null;
+            }
     }
 }
