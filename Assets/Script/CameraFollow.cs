@@ -2,28 +2,34 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    [Header("Mục tiêu cần theo đuổi")]
-    public Transform player;
+    [SerializeField] private Transform _target; // player
+    [SerializeField] private float _speed;
+    [SerializeField] private Vector3 _offset;
+    [SerializeField] private float _minX; // gioi han trai
+    [SerializeField] private float _maxX; // gioi han phai
+    [SerializeField] private float _minY; // gioi han duoi
 
-    [Header("Khoảng cách Camera")]
-    // Trục Z để -10 để camera lùi lại nhìn thấy cảnh, nếu để 0 sẽ bị kẹt vào nhân vật
-    public Vector3 offset = new Vector3(0, 0, -10f); 
+    private float _camWidth, _camHeight;
 
-    [Header("Độ mượt (Càng nhỏ càng mượt)")]
-    public float smoothSpeed = 0.125f;
-
-    // Dùng LateUpdate thay vì Update để tránh hiện tượng giật lag hình ảnh
-    void LateUpdate()
+    void Start()
     {
-        if (player != null)
-        {
-            // Tính toán vị trí mới
-            Vector3 desiredPosition = player.position + offset;
-            
-            // Di chuyển mượt mà từ vị trí hiện tại tới vị trí mới
-            Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
-            
-            transform.position = smoothedPosition;
-        }
+        _camHeight = Camera.main.orthographicSize;
+        _camWidth = _camHeight * Camera.main.aspect;
+    }
+
+    private void LateUpdate()
+    {
+        if (_target == null) return;
+
+        Vector3 desiredPosition = _target.position + _offset;
+
+        float clampedX = Mathf.Clamp(desiredPosition.x, _minX + _camWidth, _maxX - _camWidth);
+
+        // giữ nguyên Y hiện tại
+        float fixedY = transform.position.y;
+
+        Vector3 targetPos = new Vector3(clampedX, fixedY, -10f);
+
+        transform.position = Vector3.Lerp(transform.position, targetPos, _speed);
     }
 }

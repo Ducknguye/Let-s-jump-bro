@@ -29,12 +29,16 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_isDead) return;
+
         this.OnPlayerMove();
         this.OnPlayerJump();
     }
 
     private void OnChangeState(PlayerState newState)
-    { 
+    {
+        if (_isDead && newState != PlayerState.Dead) return;
+
         if (_myState == newState) return;
 
         _myState = newState;
@@ -120,7 +124,9 @@ public class PlayerController : MonoBehaviour
         }
         else if (collision.CompareTag("Enemy"))
         {
-            if (this.transform.position.y - collision.transform.position.y > 1.5f) // [Y(player) - Y(enemy)] /2
+            // chỉ khi đang rơi xuống
+            if (_myRigid2D.linearVelocityY < 0 &&
+                this.transform.position.y > collision.transform.position.y)
             {
                 MushroomController enemy = collision.GetComponent<MushroomController>();
                 enemy?.OnDead();
@@ -130,7 +136,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                Debug.Log("Player is Dead");
+                this.OnDead();
             }
         }
     }
@@ -150,6 +156,27 @@ public class PlayerController : MonoBehaviour
         if (collision.tag == "Ground" || collision.tag == "Brick")
         {
             _onGround = false;
+        }
+    }
+
+    private bool _isDead;
+
+    public void OnDead()
+    {
+        if (_isDead) return;
+        _isDead = true;
+
+        this.OnChangeState(PlayerState.Dead);
+
+        _myRigid2D.linearVelocity = Vector2.zero;
+        _myRigid2D.bodyType = RigidbodyType2D.Dynamic;
+        _myRigid2D.gravityScale = 4f;
+        _myRigid2D.AddForce(Vector2.up * 10f, ForceMode2D.Impulse);
+
+        Collider2D[] cols = GetComponents<Collider2D>();
+        foreach (var col in cols)
+        {
+            col.enabled = false;
         }
     }
 }
