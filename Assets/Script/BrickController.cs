@@ -58,6 +58,7 @@ public class BrickController : MonoBehaviour
                     ParticleSystem fxBreak = Instantiate(_fxBreak, this.transform);
                     fxBreak.transform.localPosition = Vector3.zero;
                     _mySpriteRender.gameObject.SetActive(false);
+                    SoundManager.instance.PlaySFX(SoundManager.instance.breakBrick);
                     StartCoroutine(IEDeactiveBox());
 
                     IEnumerator IEDeactiveBox()
@@ -83,6 +84,7 @@ public class BrickController : MonoBehaviour
         {
             MushroomController enemy = _enemyAbove.GetComponent<MushroomController>();
             enemy?.OnDead();
+            SoundManager.instance.PlaySFX(SoundManager.instance.enemyDie);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private PlayerState _myState;
     private bool _onGround;
     private bool _canBreakBrick;
+    private bool _wasOnGround;
 
     private List<string> _jumpList = new List<string>() { "jump1", "jump2", "jump3" };
     private float _moveInput;
@@ -45,6 +46,12 @@ public class PlayerController : MonoBehaviour
         {
             OnJump();
         }
+
+        if (!_wasOnGround && _onGround)
+        {
+            SoundManager.instance.PlaySFX(SoundManager.instance.land);
+        }
+        _wasOnGround = _onGround;
     }
 
     private void OnEnable()
@@ -69,6 +76,7 @@ public class PlayerController : MonoBehaviour
         if (_onGround && !_isDead)
         {
             _myRigid2D.AddForce(Vector2.up * _force, ForceMode2D.Impulse);
+            SoundManager.instance.PlaySFX(SoundManager.instance.jump);
         }
     }
 
@@ -144,6 +152,7 @@ public class PlayerController : MonoBehaviour
         {
             _canBreakBrick = true;
             collision.transform.parent.gameObject.SetActive(false);
+            SoundManager.instance.PlaySFX(SoundManager.instance.itemCollect);
         }
         else if (collision.CompareTag("Enemy"))
         {
@@ -153,6 +162,7 @@ public class PlayerController : MonoBehaviour
             {
                 MushroomController enemy = collision.GetComponent<MushroomController>();
                 enemy?.OnDead();
+                SoundManager.instance.PlaySFX(SoundManager.instance.enemyDie);
 
                 _myRigid2D.linearVelocity = Vector2.zero;
                 _myRigid2D.AddForce(Vector2.up * _force * 0.75f, ForceMode2D.Impulse);
@@ -165,6 +175,7 @@ public class PlayerController : MonoBehaviour
         else if (collision.CompareTag("Coin"))
         {
             collision.GetComponent<Animator>().SetBool("earn", true);
+            SoundManager.instance.PlaySFX(SoundManager.instance.coinCollect);
         }
         else if (collision.CompareTag("Plant"))
         {
@@ -196,6 +207,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_isDead) return;
         _isDead = true;
+        SoundManager.instance.PlaySFX(SoundManager.instance.die);
 
         this.OnChangeState(PlayerState.Dead);
 
