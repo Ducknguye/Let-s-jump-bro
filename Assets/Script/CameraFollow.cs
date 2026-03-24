@@ -25,10 +25,9 @@ public class CameraFollow : MonoBehaviour
 
         float clampedX = Mathf.Clamp(desiredPosition.x, _minX + _camWidth, _maxX - _camWidth);
 
-        // giữ nguyên Y hiện tại
-        float fixedY = transform.position.y;
+        float clampedY = Mathf.Max(desiredPosition.y, _minY + _camHeight);
 
-        Vector3 targetPos = new Vector3(clampedX, fixedY, -10f);
+        Vector3 targetPos = new Vector3(clampedX, clampedY, -10f);
 
         transform.position = Vector3.Lerp(transform.position, targetPos, _speed);
     }

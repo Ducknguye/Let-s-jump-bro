@@ -1,6 +1,7 @@
-using UnityEngine;
 using Spine.Unity;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
 
 public enum PlayerState { Idle, Move, Jump_Up, Falling, Attack, Dead}
 public class PlayerController : MonoBehaviour
@@ -15,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private bool _canBreakBrick;
 
     private List<string> _jumpList = new List<string>() { "jump1", "jump2", "jump3" };
+    private float _moveInput;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
@@ -31,8 +33,43 @@ public class PlayerController : MonoBehaviour
     {
         if (_isDead) return;
 
-        this.OnPlayerMove();
-        this.OnPlayerJump();
+        float keyboardInput = Input.GetAxis("Horizontal");
+
+        // ưu tiên UI nếu đang bấm
+        float finalInput = Mathf.Abs(_moveInput) > 0 ? _moveInput : keyboardInput;
+
+        OnPlayerMove(finalInput);
+
+        // nhảy bằng bàn phím
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            OnJump();
+        }
+    }
+
+    private void OnEnable()
+    {
+        InputManager.EvtMove += OnMove;
+        InputManager.EvtJump += OnJump;
+    }
+
+    private void OnDisable()
+    {
+        InputManager.EvtMove -= OnMove;
+        InputManager.EvtJump -= OnJump;
+    }
+
+    private void OnMove(float value)
+    {
+        _moveInput = value;
+    }
+
+    private void OnJump()
+    {
+        if (_onGround && !_isDead)
+        {
+            _myRigid2D.AddForce(Vector2.up * _force, ForceMode2D.Impulse);
+        }
     }
 
     private void OnChangeState(PlayerState newState)
@@ -66,12 +103,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnPlayerMove()
-    { 
-        float moveX = Input.GetAxis("Horizontal");
+    private void OnPlayerMove(float moveX)
+    {
         _myRigid2D.linearVelocity = new Vector2(moveX * _mySpeed, _myRigid2D.linearVelocityY);
 
-        // Tuc la player dang di chuyen
         if (moveX != 0)
         {
             if (_onGround) this.OnChangeState(PlayerState.Move);
@@ -81,28 +116,16 @@ public class PlayerController : MonoBehaviour
                 else this.OnChangeState(PlayerState.Falling);
             }
 
-            // xoay nhan vat trai phai
             float euler = moveX > 0 ? 0f : 180f;
             _skeleton.transform.eulerAngles = Vector3.up * euler;
         }
-        else //tuc la player dang dung yen
+        else
         {
             if (_onGround) this.OnChangeState(PlayerState.Idle);
             else
             {
                 if (_myRigid2D.linearVelocityY > 0) this.OnChangeState(PlayerState.Jump_Up);
                 else this.OnChangeState(PlayerState.Falling);
-            }
-        }
-    }
-
-    private void OnPlayerJump()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            if (_onGround)
-                {
-                    _myRigid2D.AddForce(Vector2.up * _force, ForceMode2D.Impulse);
             }
         }
     }
@@ -139,12 +162,20 @@ public class PlayerController : MonoBehaviour
                 this.OnDead();
             }
         }
+        else if (collision.CompareTag("Coin"))
+        {
+            collision.GetComponent<Animator>().SetBool("earn", true);
+        }
+        else if (collision.CompareTag("Plant"))
+        {
+            this.OnDead();
+        }
     }
 
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "Ground" || collision.tag == "Brick")
+        if (collision.tag == "Ground" || collision.tag == "Brick" || collision.tag == "Cong")
         {
             if (collision.transform.position.y < this.transform.position.y)
                 _onGround = true;
@@ -153,7 +184,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Ground" || collision.tag == "Brick")
+        if (collision.tag == "Ground" || collision.tag == "Brick"  || collision.tag == "Cong")
         {
             _onGround = false;
         }

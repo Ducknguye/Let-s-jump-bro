@@ -1,0 +1,118 @@
+
+plant.png
+size: 1711,428
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1/hoa
+  rotate: false
+  xy: 505, 11
+  size: 499, 415
+  orig: 499, 415
+  offset: 0, 0
+  index: -1
+1/rang_L
+  rotate: false
+  xy: 1456, 10
+  size: 106, 130
+  orig: 106, 130
+  offset: 0, 0
+  index: -1
+1/rang_R
+  rotate: true
+  xy: 1257, 5
+  size: 150, 197
+  orig: 150, 197
+  offset: 0, 0
+  index: -1
+2/hoa
+  rotate: false
+  xy: 2, 2
+  size: 501, 424
+  orig: 501, 424
+  offset: 0, 0
+  index: -1
+2/la1
+  rotate: false
+  xy: 1257, 157
+  size: 230, 146
+  orig: 230, 146
+  offset: 0, 0
+  index: -1
+1/la1
+  rotate: false
+  xy: 1257, 157
+  size: 230, 146
+  orig: 230, 146
+  offset: 0, 0
+  index: -1
+2/la2
+  rotate: false
+  xy: 1006, 140
+  size: 249, 163
+  orig: 249, 163
+  offset: 0, 0
+  index: -1
+1/la2
+  rotate: false
+  xy: 1006, 140
+  size: 249, 163
+  orig: 249, 163
+  offset: 0, 0
+  index: -1
+2/la3
+  rotate: false
+  xy: 1006, 39
+  size: 218, 99
+  orig: 218, 99
+  offset: 0, 0
+  index: -1
+1/la3
+  rotate: false
+  xy: 1006, 39
+  size: 218, 99
+  orig: 218, 99
+  offset: 0, 0
+  index: -1
+2/la4
+  rotate: false
+  xy: 1491, 306
+  size: 218, 120
+  orig: 218, 120
+  offset: 0, 0
+  index: -1
+1/la4
+  rotate: false
+  xy: 1491, 306
+  size: 218, 120
+  orig: 218, 120
+  offset: 0, 0
+  index: -1
+2/rang_L
+  rotate: false
+  xy: 1564, 10
+  size: 105, 130
+  orig: 105, 130
+  offset: 0, 0
+  index: -1
+2/rang_R
+  rotate: true
+  xy: 1491, 142
+  size: 162, 199
+  orig: 162, 199
+  offset: 0, 0
+  index: -1
+2/than
+  rotate: true
+  xy: 1006, 305
+  size: 121, 483
+  orig: 121, 483
+  offset: 0, 0
+  index: -1
+1/than
+  rotate: true
+  xy: 1006, 305
+  size: 121, 483
+  orig: 121, 483
+  offset: 0, 0
+  index: -1

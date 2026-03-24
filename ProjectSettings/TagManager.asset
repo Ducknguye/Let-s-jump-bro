@@ -8,6 +8,9 @@ TagManager:
   - Brick
   - Item
   - Enemy
+  - Plant
+  - Cong
+  - Coin
   layers:
   - Default
   - TransparentFX
@@ -18,9 +21,9 @@ TagManager:
   - FX
   - Player
   - Ground
-  - 
-  - 
-  - 
+  - Plant
+  - Enemy
+  - Coin
   - 
   - 
   - 
