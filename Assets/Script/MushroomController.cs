@@ -37,6 +37,7 @@ public class MushroomController : MonoBehaviour
     public void OnDead()
     {
         _isDead = true;
+        SoundManager.instance.PlaySFX(SoundManager.instance.enemyDie);
         _skeleton.AnimationName = "die";
         Rigidbody2D rigid = this.GetComponent<Rigidbody2D>();
         rigid.linearVelocity = Vector2.zero;
