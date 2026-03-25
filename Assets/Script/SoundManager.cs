@@ -3,6 +3,8 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
+    private float _lastPlayTime = 0f;
+    private float _minInterval = 0.05f; // 50ms
 
     [Header("Audio Sources")]
     public AudioSource musicSource;
@@ -48,6 +50,12 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySFX(AudioClip clip)
     {
+        if (clip == null || sfxSource == null) return;
+
+        // 🚫 chặn spam quá nhanh
+        if (Time.time - _lastPlayTime < _minInterval) return;
+
         sfxSource.PlayOneShot(clip);
+        _lastPlayTime = Time.time;
     }
 }

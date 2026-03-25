@@ -74,6 +74,10 @@ public class BrickController : MonoBehaviour
 
                 GameObject earnObj = Instantiate(_objEarn, this.transform);
                 earnObj.transform.localPosition = Vector3.zero;
+
+                GameManager.instance.AddCoin(10);
+                // 🔊 sound
+                SoundManager.instance.PlaySFX(SoundManager.instance.coinCollect);
                 break;
             case BrickType.Lock_Box:
 

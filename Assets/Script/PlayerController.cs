@@ -49,7 +49,10 @@ public class PlayerController : MonoBehaviour
 
         if (!_wasOnGround && _onGround)
         {
-            SoundManager.instance.PlaySFX(SoundManager.instance.land);
+            if (SoundManager.instance != null)
+            {
+                SoundManager.instance.PlaySFX(SoundManager.instance.land);
+            }
         }
         _wasOnGround = _onGround;
     }
@@ -175,6 +178,7 @@ public class PlayerController : MonoBehaviour
         else if (collision.CompareTag("Coin"))
         {
             collision.GetComponent<Animator>().SetBool("earn", true);
+            GameManager.instance.AddCoin(10);
             SoundManager.instance.PlaySFX(SoundManager.instance.coinCollect);
         }
         else if (collision.CompareTag("Plant"))
