@@ -1,10 +1,11 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
-    private float _lastPlayTime = 0f;
-    private float _minInterval = 0.05f; // 50ms
+    private Dictionary<AudioClip, float> _lastPlayTimes = new Dictionary<AudioClip, float>();
+    [SerializeField] private float _minInterval = 0.05f;
 
     [Header("Audio Sources")]
     public AudioSource musicSource;
@@ -52,10 +53,14 @@ public class SoundManager : MonoBehaviour
     {
         if (clip == null || sfxSource == null) return;
 
-        // 🚫 chặn spam quá nhanh
-        if (Time.time - _lastPlayTime < _minInterval) return;
+        // ✅ chặn theo từng clip, không phải global
+        if (_lastPlayTimes.ContainsKey(clip))
+        {
+            if (Time.time - _lastPlayTimes[clip] < _minInterval)
+                return;
+        }
 
         sfxSource.PlayOneShot(clip);
-        _lastPlayTime = Time.time;
+        _lastPlayTimes[clip] = Time.time;
     }
 }

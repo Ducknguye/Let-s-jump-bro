@@ -178,7 +178,10 @@ public class PlayerController : MonoBehaviour
         }
         else if (collision.CompareTag("Coin"))
         {
-            collision.GetComponent<Animator>().SetBool("earn", true);
+            if (!collision.gameObject.activeInHierarchy) return; // FIX mạnh hơn
+
+            collision.gameObject.SetActive(false);
+
             GameManager.instance.AddCoin(10);
             SoundManager.instance.PlaySFX(SoundManager.instance.coinCollect);
         }
