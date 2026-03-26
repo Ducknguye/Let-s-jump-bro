@@ -78,6 +78,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_onGround && !_isDead)
         {
+            _myRigid2D.linearVelocity = new Vector2(_myRigid2D.linearVelocity.x, 0); // FIX: reset lực Y
             _myRigid2D.AddForce(Vector2.up * _force, ForceMode2D.Impulse);
             SoundManager.instance.PlaySFX(SoundManager.instance.jump);
         }
@@ -192,7 +193,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.tag == "Ground" || collision.tag == "Brick" || collision.tag == "Cong")
         {
-            if (collision.transform.position.y < this.transform.position.y)
+            if (collision.transform.position.y < this.transform.position.y - 0.1f)
                 _onGround = true;
         }
     }
