@@ -229,5 +229,7 @@ public class PlayerController : MonoBehaviour
         {
             col.enabled = false;
         }
+
+        GameOverManager.instance.ShowGameOver(); // ✅ thêm dòng này
     }
 }
