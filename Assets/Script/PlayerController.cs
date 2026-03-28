@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public enum PlayerState { Idle, Move, Jump_Up, Falling, Attack, Dead}
+public enum PlayerState { Idle, Move, Jump_Up, Falling, Dead}
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] SkeletonAnimation _skeleton;
@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     private List<string> _jumpList = new List<string>() { "jump1", "jump2", "jump3" };
     private float _moveInput;
     private bool _needDetach;
+    private Coroutine _breakBrickCoroutine;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
@@ -121,14 +122,22 @@ public class PlayerController : MonoBehaviour
             case PlayerState.Dead:
                 _skeleton.AnimationName = "die";
                 break;
-            case PlayerState.Attack:
-                
-                break;
         }
     }
 
     private void OnPlayerMove(float moveX)
     {
+        float platformVelocityX = 0;
+
+        // nếu đang đứng trên platform
+        if (transform.parent != null)
+        {
+            Rigidbody2D platformRb = transform.parent.GetComponent<Rigidbody2D>();
+            if (platformRb != null)
+            {
+                platformVelocityX = platformRb.linearVelocity.x;
+            }
+        }
         _myRigid2D.linearVelocity = new Vector2(moveX * _mySpeed, _myRigid2D.linearVelocityY);
 
         if (moveX != 0)
@@ -167,6 +176,18 @@ public class PlayerController : MonoBehaviour
         else if (collision.CompareTag("Item"))
         {
             _canBreakBrick = true;
+
+            // bật shield animation
+            EnableShield(true);
+
+            // reset timer nếu ăn lại
+            if (_breakBrickCoroutine != null)
+            {
+                StopCoroutine(_breakBrickCoroutine);
+            }
+
+            _breakBrickCoroutine = StartCoroutine(IEBreakBrickTimer());
+
             collision.transform.parent.gameObject.SetActive(false);
             SoundManager.instance.PlaySFX(SoundManager.instance.itemCollect);
         }
@@ -202,7 +223,15 @@ public class PlayerController : MonoBehaviour
             this.OnDead();
         }
     }
+    private IEnumerator IEBreakBrickTimer()
+    {
+        yield return new WaitForSeconds(15f);
 
+        _canBreakBrick = false;
+
+        // tắt shield animation
+        EnableShield(false);
+    }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -261,5 +290,18 @@ public class PlayerController : MonoBehaviour
         }
 
         GameOverManager.instance.ShowGameOver(); // ✅ thêm dòng này
+    }
+
+    private void EnableShield(bool enable)
+    {
+        if (enable)
+        {
+            // track 1 = overlay
+            _skeleton.AnimationState.SetAnimation(1, "shield", true);
+        }
+        else
+        {
+            _skeleton.AnimationState.ClearTrack(1);
+        }
     }
 }
