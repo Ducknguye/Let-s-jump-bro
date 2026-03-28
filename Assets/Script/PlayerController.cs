@@ -1,4 +1,5 @@
 using Spine.Unity;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
 
     private List<string> _jumpList = new List<string>() { "jump1", "jump2", "jump3" };
     private float _moveInput;
+    private bool _needDetach;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
@@ -33,6 +35,16 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if (_isDead) return;
+
+        if (_needDetach)
+        {
+            _needDetach = false;
+
+            if (gameObject.activeInHierarchy)
+            {
+                transform.parent = null;
+            }
+        }
 
         float keyboardInput = Input.GetAxis("Horizontal");
 
@@ -197,7 +209,14 @@ public class PlayerController : MonoBehaviour
         if (collision.tag == "Ground" || collision.tag == "Brick" || collision.tag == "Cong")
         {
             if (collision.transform.position.y < this.transform.position.y - 0.1f)
+            {
                 _onGround = true;
+
+                if (collision.attachedRigidbody != null)
+                {
+                    transform.parent = collision.transform;
+                }
+            }
         }
     }
 
@@ -206,7 +225,18 @@ public class PlayerController : MonoBehaviour
         if (collision.tag == "Ground" || collision.tag == "Brick"  || collision.tag == "Cong")
         {
             _onGround = false;
+
+            if(transform.parent == collision.transform)
+            {
+                _needDetach = true; // đánh dấu, KHÔNG detach ngay
+            }
         }
+    }
+
+    private IEnumerator DetachNextFrame()
+    {
+        yield return null; // chờ 1 frame
+        transform.parent = null;
     }
 
     private bool _isDead;
