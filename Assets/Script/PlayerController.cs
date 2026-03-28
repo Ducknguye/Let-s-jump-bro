@@ -19,8 +19,8 @@ public class PlayerController : MonoBehaviour
 
     private List<string> _jumpList = new List<string>() { "jump1", "jump2", "jump3" };
     private float _moveInput;
-    private bool _needDetach;
     private Coroutine _breakBrickCoroutine;
+    private Rigidbody2D _currentPlatform;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
@@ -36,16 +36,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if (_isDead) return;
-
-        if (_needDetach)
-        {
-            _needDetach = false;
-
-            if (gameObject.activeInHierarchy)
-            {
-                transform.parent = null;
-            }
-        }
 
         float keyboardInput = Input.GetAxis("Horizontal");
 
@@ -127,18 +117,21 @@ public class PlayerController : MonoBehaviour
 
     private void OnPlayerMove(float moveX)
     {
-        float platformVelocityX = 0;
+        float platformVelocityX = 0f;
 
-        // nếu đang đứng trên platform
-        if (transform.parent != null)
+        // lấy velocity của platform nếu đang đứng trên nó
+        if (_currentPlatform != null)
         {
-            Rigidbody2D platformRb = transform.parent.GetComponent<Rigidbody2D>();
-            if (platformRb != null)
-            {
-                platformVelocityX = platformRb.linearVelocity.x;
-            }
+            platformVelocityX = _currentPlatform.linearVelocity.x;
         }
-        _myRigid2D.linearVelocity = new Vector2(moveX * _mySpeed, _myRigid2D.linearVelocityY);
+
+        // movement chuẩn: tốc độ player + tốc độ platform
+        float finalX = moveX * _mySpeed + platformVelocityX;
+
+        _myRigid2D.linearVelocity = new Vector2(
+            finalX,
+            _myRigid2D.linearVelocity.y
+        );
 
         if (moveX != 0)
         {
@@ -241,10 +234,7 @@ public class PlayerController : MonoBehaviour
             {
                 _onGround = true;
 
-                if (collision.attachedRigidbody != null)
-                {
-                    transform.parent = collision.transform;
-                }
+                _currentPlatform = collision.attachedRigidbody;
             }
         }
     }
@@ -255,17 +245,12 @@ public class PlayerController : MonoBehaviour
         {
             _onGround = false;
 
-            if(transform.parent == collision.transform)
+            if (_currentPlatform != null &&
+            collision.attachedRigidbody == _currentPlatform)
             {
-                _needDetach = true; // đánh dấu, KHÔNG detach ngay
+                _currentPlatform = null;
             }
         }
-    }
-
-    private IEnumerator DetachNextFrame()
-    {
-        yield return null; // chờ 1 frame
-        transform.parent = null;
     }
 
     private bool _isDead;
@@ -296,12 +281,23 @@ public class PlayerController : MonoBehaviour
     {
         if (enable)
         {
-            // track 1 = overlay
             _skeleton.AnimationState.SetAnimation(1, "shield", true);
         }
         else
         {
             _skeleton.AnimationState.ClearTrack(1);
+
+            // 👇 reset toàn bộ skeleton về màu gốc
+            _skeleton.Skeleton.SetColor(Color.white);
+
+            // 👇 reset từng slot (cực quan trọng nếu bị vàng từng phần)
+            foreach (var slot in _skeleton.Skeleton.Slots)
+            {
+                slot.SetColor(Color.white);
+            }
+
+            // 👇 apply lại để Spine cập nhật ngay
+            _skeleton.AnimationState.Apply(_skeleton.Skeleton);
         }
     }
 }
