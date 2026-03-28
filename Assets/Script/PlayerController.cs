@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public enum PlayerState { Idle, Move, Jump_Up, Falling, Attack, Dead}
+public enum PlayerState { Idle, Move, Jump_Up, Falling, Dead}
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] SkeletonAnimation _skeleton;
@@ -19,7 +19,8 @@ public class PlayerController : MonoBehaviour
 
     private List<string> _jumpList = new List<string>() { "jump1", "jump2", "jump3" };
     private float _moveInput;
-    private bool _needDetach;
+    private Coroutine _breakBrickCoroutine;
+    private Rigidbody2D _currentPlatform;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
@@ -35,16 +36,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if (_isDead) return;
-
-        if (_needDetach)
-        {
-            _needDetach = false;
-
-            if (gameObject.activeInHierarchy)
-            {
-                transform.parent = null;
-            }
-        }
 
         float keyboardInput = Input.GetAxis("Horizontal");
 
@@ -121,15 +112,26 @@ public class PlayerController : MonoBehaviour
             case PlayerState.Dead:
                 _skeleton.AnimationName = "die";
                 break;
-            case PlayerState.Attack:
-                
-                break;
         }
     }
 
     private void OnPlayerMove(float moveX)
     {
-        _myRigid2D.linearVelocity = new Vector2(moveX * _mySpeed, _myRigid2D.linearVelocityY);
+        float platformVelocityX = 0f;
+
+        // lấy velocity của platform nếu đang đứng trên nó
+        if (_currentPlatform != null)
+        {
+            platformVelocityX = _currentPlatform.linearVelocity.x;
+        }
+
+        // movement chuẩn: tốc độ player + tốc độ platform
+        float finalX = moveX * _mySpeed + platformVelocityX;
+
+        _myRigid2D.linearVelocity = new Vector2(
+            finalX,
+            _myRigid2D.linearVelocity.y
+        );
 
         if (moveX != 0)
         {
@@ -167,6 +169,18 @@ public class PlayerController : MonoBehaviour
         else if (collision.CompareTag("Item"))
         {
             _canBreakBrick = true;
+
+            // bật shield animation
+            EnableShield(true);
+
+            // reset timer nếu ăn lại
+            if (_breakBrickCoroutine != null)
+            {
+                StopCoroutine(_breakBrickCoroutine);
+            }
+
+            _breakBrickCoroutine = StartCoroutine(IEBreakBrickTimer());
+
             collision.transform.parent.gameObject.SetActive(false);
             SoundManager.instance.PlaySFX(SoundManager.instance.itemCollect);
         }
@@ -202,7 +216,15 @@ public class PlayerController : MonoBehaviour
             this.OnDead();
         }
     }
+    private IEnumerator IEBreakBrickTimer()
+    {
+        yield return new WaitForSeconds(15f);
 
+        _canBreakBrick = false;
+
+        // tắt shield animation
+        EnableShield(false);
+    }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -212,10 +234,7 @@ public class PlayerController : MonoBehaviour
             {
                 _onGround = true;
 
-                if (collision.attachedRigidbody != null)
-                {
-                    transform.parent = collision.transform;
-                }
+                _currentPlatform = collision.attachedRigidbody;
             }
         }
     }
@@ -226,17 +245,12 @@ public class PlayerController : MonoBehaviour
         {
             _onGround = false;
 
-            if(transform.parent == collision.transform)
+            if (_currentPlatform != null &&
+            collision.attachedRigidbody == _currentPlatform)
             {
-                _needDetach = true; // đánh dấu, KHÔNG detach ngay
+                _currentPlatform = null;
             }
         }
-    }
-
-    private IEnumerator DetachNextFrame()
-    {
-        yield return null; // chờ 1 frame
-        transform.parent = null;
     }
 
     private bool _isDead;
@@ -261,5 +275,29 @@ public class PlayerController : MonoBehaviour
         }
 
         GameOverManager.instance.ShowGameOver(); // ✅ thêm dòng này
+    }
+
+    private void EnableShield(bool enable)
+    {
+        if (enable)
+        {
+            _skeleton.AnimationState.SetAnimation(1, "shield", true);
+        }
+        else
+        {
+            _skeleton.AnimationState.ClearTrack(1);
+
+            // 👇 reset toàn bộ skeleton về màu gốc
+            _skeleton.Skeleton.SetColor(Color.white);
+
+            // 👇 reset từng slot (cực quan trọng nếu bị vàng từng phần)
+            foreach (var slot in _skeleton.Skeleton.Slots)
+            {
+                slot.SetColor(Color.white);
+            }
+
+            // 👇 apply lại để Spine cập nhật ngay
+            _skeleton.AnimationState.Apply(_skeleton.Skeleton);
+        }
     }
 }

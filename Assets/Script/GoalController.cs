@@ -15,8 +15,7 @@ public class GoalController : MonoBehaviour
 
             left.Play();
             right.Play();
-
-            Debug.Log("YOU WIN!");
+            WinManager.instance.OnWin();
         }
     }
 }
