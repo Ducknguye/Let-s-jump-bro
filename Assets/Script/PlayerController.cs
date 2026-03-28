@@ -287,16 +287,16 @@ public class PlayerController : MonoBehaviour
         {
             _skeleton.AnimationState.ClearTrack(1);
 
-            // 👇 reset toàn bộ skeleton về màu gốc
+            // reset toàn bộ skeleton về màu gốc
             _skeleton.Skeleton.SetColor(Color.white);
 
-            // 👇 reset từng slot (cực quan trọng nếu bị vàng từng phần)
+            // reset từng slot (cực quan trọng nếu bị vàng từng phần)
             foreach (var slot in _skeleton.Skeleton.Slots)
             {
                 slot.SetColor(Color.white);
             }
 
-            // 👇 apply lại để Spine cập nhật ngay
+            // apply lại để Spine cập nhật ngay
             _skeleton.AnimationState.Apply(_skeleton.Skeleton);
         }
     }
