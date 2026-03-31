@@ -9824,7 +9824,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WinManager
   winPanel: {fileID: 504464096}
-  nextLevelName: Level 2
+  nextLevelName: Level 2_TDuc
   scoreText: {fileID: 1655383943}
 --- !u!1 &726111699
 GameObject:

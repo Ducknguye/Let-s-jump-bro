@@ -16735,7 +16735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WinManager
   winPanel: {fileID: 1726435378}
-  nextLevelName: Level 2
+  nextLevelName: Level 5_Giap
   scoreText: {fileID: 1212314051}
 --- !u!1001 &1424282366
 PrefabInstance:

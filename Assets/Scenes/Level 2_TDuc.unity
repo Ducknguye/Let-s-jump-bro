@@ -24780,7 +24780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WinManager
   winPanel: {fileID: 1032059162}
-  nextLevelName: Level 2
+  nextLevelName: Level 3_HDuc
   scoreText: {fileID: 114889121}
 --- !u!4 &2038508537
 Transform:

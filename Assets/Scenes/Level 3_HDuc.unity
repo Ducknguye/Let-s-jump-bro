@@ -17819,7 +17819,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WinManager
   winPanel: {fileID: 1661344011}
-  nextLevelName: Level 2
+  nextLevelName: Level 4_BTuan
   scoreText: {fileID: 2024132302}
 --- !u!1 &1773851735
 GameObject:
