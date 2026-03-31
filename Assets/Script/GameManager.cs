@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 
     public int coin = 0;
     public TextMeshProUGUI coinText;
+    public int totalCoin = 0;
 
     void Awake()
     {
@@ -15,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        totalCoin = GameObject.FindGameObjectsWithTag("Coin").Length;
         UpdateCoinUI();
     }
 

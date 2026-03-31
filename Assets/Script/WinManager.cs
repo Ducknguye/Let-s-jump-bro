@@ -1,6 +1,7 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
 
 public class WinManager : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class WinManager : MonoBehaviour
 
     [SerializeField] private GameObject winPanel;
     [SerializeField] private string nextLevelName;
+
+    [SerializeField] private TextMeshProUGUI scoreText;
 
     private bool _isWin;
 
@@ -26,10 +29,15 @@ public class WinManager : MonoBehaviour
 
     private IEnumerator ShowWinPanel()
     {
-        yield return new WaitForSecondsRealtime(3f); // 👈 delay 3s (không bị pause)
+        yield return new WaitForSecondsRealtime(3f);
+
+        int coin = GameManager.instance.coin;
+        int total = GameManager.instance.totalCoin;
+
+        scoreText.text = "Score: " + coin;
 
         winPanel.SetActive(true);
-        Time.timeScale = 0f; // pause game
+        Time.timeScale = 0f;
     }
 
     public void GoHome()
