@@ -31,11 +31,36 @@ public class WinManager : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(3f);
 
+        // Lấy điểm hiện tại
         int coin = GameManager.instance.coin;
-        int total = GameManager.instance.totalCoin;
 
-        scoreText.text = "Score: " + coin;
+        // Lấy tên scene hiện tại
+        string levelName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        string key = "BEST_SCORE_" + levelName;
 
+        // Lấy best score
+        int best = PlayerPrefs.GetInt(key, 0);
+
+        bool isNewRecord = false;
+
+        // Nếu phá kỷ lục
+        if (coin > best)
+        {
+            best = coin;
+            PlayerPrefs.SetInt(key, best);
+            PlayerPrefs.Save();
+            isNewRecord = true;
+        }
+
+        // Hiển thị UI
+        scoreText.text = "Score: " + coin + "\nBest: " + best;
+
+        if (isNewRecord)
+        {
+            scoreText.text += "\nNEW BEST!";
+        }
+
+        // Hiện panel + pause
         winPanel.SetActive(true);
         Time.timeScale = 0f;
     }
