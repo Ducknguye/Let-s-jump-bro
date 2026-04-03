@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public int coin = 0;
     public TextMeshProUGUI coinText;
     public int totalCoin = 0;
+    public bool isGameEnded = false; // ✅ thêm dòng này
 
     void Awake()
     {

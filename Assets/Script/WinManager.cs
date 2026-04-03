@@ -31,6 +31,15 @@ public class WinManager : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(3f);
 
+        // ✅ ĐÁNH DẤU game đã kết thúc
+        GameManager.instance.isGameEnded = true;
+
+        // ✅ Nếu đang pause thì bỏ pause trước
+        if (PauseManager.instance != null)
+        {
+            PauseManager.instance.ResumeGame();
+        }
+
         // Lấy điểm hiện tại
         int coin = GameManager.instance.coin;
 
@@ -52,12 +61,14 @@ public class WinManager : MonoBehaviour
             isNewRecord = true;
         }
 
-        // Hiển thị UI
-        scoreText.text = "Score: " + coin + "\nBest: " + best;
-
+        // Hiển thị text
         if (isNewRecord)
         {
-            scoreText.text += "\nNEW BEST!";
+            scoreText.text = "NEW BEST SCORE!\nScore: " + coin + "\nBest: " + best;
+        }
+        else
+        {
+            scoreText.text = "Score: " + coin + "\nBest: " + best;
         }
 
         // Hiện panel + pause

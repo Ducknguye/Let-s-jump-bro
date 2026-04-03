@@ -17,6 +17,15 @@ public class GameOverManager : MonoBehaviour
 
     public void ShowGameOver()
     {
+        // ✅ ĐÁNH DẤU game đã kết thúc
+        GameManager.instance.isGameEnded = true;
+
+        // ✅ Nếu đang pause thì bỏ pause trước
+        if (PauseManager.instance != null)
+        {
+            PauseManager.instance.ResumeGame();
+        }
+
         int coin = GameManager.instance.coin;
 
         string levelName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
