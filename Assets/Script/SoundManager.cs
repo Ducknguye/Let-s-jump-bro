@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
 public class SoundManager : MonoBehaviour
@@ -30,6 +31,9 @@ public class SoundManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+
+            // 🔥 lắng nghe khi load scene
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
@@ -37,13 +41,32 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
     void Start()
     {
         PlayMusic(backgroundMusic);
     }
 
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // 🔥 đảm bảo luôn có nhạc khi vào scene mới
+        if (!musicSource.isPlaying)
+        {
+            PlayMusic(backgroundMusic);
+        }
+    }
+
     public void PlayMusic(AudioClip clip)
     {
+        if (clip == null) return;
+
+        // tránh play lại nếu đang chạy đúng nhạc
+        if (musicSource.clip == clip && musicSource.isPlaying) return;
+
         musicSource.clip = clip;
         musicSource.loop = true;
         musicSource.Play();
@@ -53,7 +76,6 @@ public class SoundManager : MonoBehaviour
     {
         if (clip == null || sfxSource == null) return;
 
-        // ✅ chặn theo từng clip, không phải global
         if (_lastPlayTimes.ContainsKey(clip))
         {
             if (Time.time - _lastPlayTimes[clip] < _minInterval)
