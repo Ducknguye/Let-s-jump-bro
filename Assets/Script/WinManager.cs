@@ -64,7 +64,7 @@ public class WinManager : MonoBehaviour
         // Hiển thị text
         if (isNewRecord)
         {
-            scoreText.text = "NEW BEST SCORE!\nScore: " + coin + "\nBest: " + best;
+            scoreText.text = "NEW SCORE!\nScore: " + coin + "\nBest: " + best;
         }
         else
         {
