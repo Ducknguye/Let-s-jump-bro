@@ -16,6 +16,9 @@ public class PauseManager : MonoBehaviour
 
     private void Update()
     {
+        // ❌ CHẶN pause nếu game đã kết thúc (win hoặc game over)
+        if (GameManager.instance != null && GameManager.instance.isGameEnded)
+            return;
         // 👇 bấm ESC để pause/unpause
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -28,6 +31,9 @@ public class PauseManager : MonoBehaviour
 
     public void PauseGame()
     {
+        if (GameManager.instance != null && GameManager.instance.isGameEnded)
+            return;
+
         if (_isPaused) return;
 
         _isPaused = true;
@@ -38,6 +44,9 @@ public class PauseManager : MonoBehaviour
 
     public void ResumeGame()
     {
+        if (GameManager.instance != null && GameManager.instance.isGameEnded)
+            return;
+
         if (!_isPaused) return;
 
         _isPaused = false;
